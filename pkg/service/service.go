@@ -1,8 +1,12 @@
 package service
 
-import "github.com/Sancene/go-rest-learn/pkg/repository"
+import (
+	todo "github.com/Sancene/go-rest-learn"
+	"github.com/Sancene/go-rest-learn/pkg/repository"
+)
 
 type Authorization interface {
+	CreateUser(user todo.User) (int, error)
 }
 
 type TodoList interface {
@@ -18,5 +22,7 @@ type Service struct {
 }
 
 func NewService(repository *repository.Repository) *Service {
-	return &Service{}
+	return &Service{
+		Authorization: NewAuthService(repository.Authorization),
+	}
 }
