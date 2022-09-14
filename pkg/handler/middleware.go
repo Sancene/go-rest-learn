@@ -31,5 +31,5 @@ func (h *Handler) userIdentity(c *gin.Context) {
 		return
 	}
 
-	c.Set("userId", userId)
+	c.Set(userCtx, userId)
 }
